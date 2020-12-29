@@ -1,0 +1,90 @@
+
+<h3>Rendez-vous</h3>
+  <div class ="container">
+    <div class="row">
+<div class="col-lg-11">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><i class="fa fa-credit-card" aria-hidden="true"></i>Cin</th><th><i class="fa fa-male" aria-hidden="true"></i>Nom et Prenom</th><th><i class="fa fa-calendar" aria-hidden="true"></i>Date De Rendez_Vous</th><th><i class="fa fa-clock-o" aria-hidden="true"></i>heure</th><th><i class="fa fa-etsy" aria-hidden="true"></i>commentaire</th><th><button class="btn btn-success" (click)="open(mymodal)" (click)="operation ='add';" >ADD</button></th>
+      </tr>
+      </thead>
+      <tbody>
+              <tr *ngFor="let rendez_vous of rendez_vous">
+              <td>{{rendez_vous.cin}}</td><td>{{rendez_vous.nom_et_prenom}}</td><td>{{rendez_vous.dateDeRendezVous}}</td><td>{{rendez_vous.heure}}</td><td>{{rendez_vous.commentaire}}</td>
+                <td>  <button class="btn btn-success" (click)="open(mymodal)" (click)="operation ='edit'; selectedRendez_vous=rendez_vous;">edit</button>  </td>
+              <td>  <button class="btn btn-danger"(click)="operation ='annuler';">annuler</button> </td>
+
+              </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          {{operation =='add'? 'Ajouter rendez_vous':
+        operation =='edit'? 'Modifier rendez_vous':
+        operation =='annuler'? 'Annuler rendez_vous':''}}
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+<div *ngIf="operation=='add'|| operation=='edit'">
+ <form [formGroup]="rendez_vousForm">
+
+          <div class="form-group">
+            <label ><i class="fa fa-credit-card" aria-hidden="true"></i> cin</label>
+          <input type="number" class="form-control" formControlName="cin" [(ngModel)]="selectedRendez_vous.cin"/>
+
+            </div>
+            <div class="alert alert-danger" *ngIf="rendez_vousForm.controls['cin'].invalid && (rendez_vousForm.controls['cin'].touched ||rendez_vousForm.controls['cin'].dirty)">
+              cin est obligatoire
+              </div>
+            <div class="form-group">
+              <label ><i class="fa fa-male" aria-hidden="true"></i>nom_et_prenom</label>
+            <input type="text" class="form-control" formControlName="nom_et_prenom" [(ngModel)]="selectedRendez_vous.nom_et_prenom"/>
+            </div>
+            <div class="form-group">
+              <label><i class="fa fa-calendar" aria-hidden="true"></i>dateDeRendezVous</label>
+            <input type="calendar" class="form-control" formControlName="dateDeRendezVous"[(ngModel)]="selectedRendez_vous.dateDeRendezVous"/>
+
+              </div>
+              <div class="form-group">
+                <label > <i class="fa fa-clock-o" aria-hidden="true"></i>heure</label>
+              <input type="text" class="form-control" formControlName="heure" [(ngModel)]="selectedRendez_vous.heure"/>
+
+                </div>
+
+                  <div class="form-group">
+                    <label > <i class="fa fa-etsy" aria-hidden="true"></i>commentaire</label>
+                  <input type="text" class="form-control" formControlName="commentaire" [(ngModel)]="selectedRendez_vous.commentaire"/>
+
+                  </div>
+
+                    <div class="modal-footer">
+                  <button class="btn btn-success" (click)="operation =='add'? addRendezVous() : updateRendezVous() " (click)="modal.close('Save click')">
+                   {{operation =='add'? 'Ajouter' :
+                   operation =='edit' ? 'modifier':''}}</button>
+  </div>
+                  </form>
+                  </div>
+                    </div>
+                      </div>
+
+                    </ng-template>
+
+
+<div *ngIf="operation=='annuler'">
+  <p class="card-title">
+  cin:{{selectedRendez_vous.cin}}
+</p>
+<p>
+  voulez vous annuler ce rendez_Vous ?
+  <button class="btn btn-success" [disabled]="!selectedRendez_vous.cin"(click)="deleteRendezVous()">confirmer</button>
+  </p>
+  </div>

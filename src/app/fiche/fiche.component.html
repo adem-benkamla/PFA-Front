@@ -1,0 +1,85 @@
+
+<app-content></app-content>
+<h3>Fiche medicale</h3>
+  <div class ="container">
+    <div class="row">
+<div class="col-lg-11">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><i class="fa fa-credit-card" aria-hidden="true"></i>Cin</th><th><i class="fa fa-user-circle" aria-hidden="true"></i>Nom</th><th><i class="fa fa-user-circle" aria-hidden="true"></i>Prenom</th><th><i class="fa fa-birthday-cake" aria-hidden="true"></i>Age</th><th><i class="fa fa-phone" aria-hidden="true"></i>Telephone</th><th><i class="fa fa-address-card" aria-hidden="true"></i>AdresseMail</th><th>
+      <button class="btn btn-success" (click)="open(mymodal)" (click)="operation ='add';" >ADD</button>
+      </th>
+      </tr>
+      </thead>
+      <tbody>
+              <tr *ngFor="let fiche of fiche">
+              <td>{{fiche.cin}}</td><td>{{fiche.nom}}</td><td>{{fiche.prenom}}</td><td>{{fiche.age}}</td><td>{{fiche.telephone}}</td><td>{{fiche.adresseMail}}</td>
+                <td>  <button class="btn btn-success" (click)="open(mymodal)"  (click)="operation ='edit'; selectedFiche=fiche;">edit</button>  </td>
+
+              </tr>
+        </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        {{operation =='add'? 'Ajouter un patient':
+      operation =='edit'? 'Modifier un patient':
+      operation =='annuler'? 'Annuler rendez_vous':''}}
+  </h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="card-body">
+<div *ngIf="operation=='add'|| operation=='edit'">
+
+ <form [formGroup]="ficheForm">
+
+          <div class="form-group">
+      <label ><i class="fa fa-credit-card" aria-hidden="true"></i> cin</label>
+          <input type="number" class="form-control" formControlName="cin" [(ngModel)]="selectedFiche.cin"/>
+
+            </div>
+            <div class="alert alert-danger" *ngIf="ficheForm.controls['cin'].invalid && (ficheForm.controls['cin'].touched ||ficheForm.controls['cin'].dirty)">
+              cin est obligatoire
+              </div>
+            <div class="form-group">
+              <label ><i class="fa fa-user-circle" aria-hidden="true"></i> nom</label>
+            <input type="text" class="form-control" formControlName="nom" [(ngModel)]="selectedFiche.nom"/>
+            </div>
+            <div class="form-group">
+              <label > <i class="fa fa-user-circle" aria-hidden="true"></i>prenom</label>
+            <input type="text" class="form-control" formControlName="prenom"[(ngModel)]="selectedFiche.prenom"/>
+
+              </div>
+              <div class="form-group">
+                <label > <i class="fa fa-birthday-cake" aria-hidden="true"></i>Age</label>
+              <input type="text" class="form-control" formControlName="age" [(ngModel)]="selectedFiche.age"/>
+
+                </div>
+                <div class="form-group">
+                  <label ><i class="fa fa-phone" aria-hidden="true"></i> telephone</label>
+                <input type="number" class="form-control" formControlName="telephone" [(ngModel)]="selectedFiche.telephone"/>
+                  </div>
+                  <div class="form-group">
+                    <label > <i class="fa fa-address-card" aria-hidden="true"></i>adresseMail</label>
+                  <input type="text" class="form-control" formControlName="adresseMail" [(ngModel)]="selectedFiche.adresseMail"/>
+
+                  </div>
+                   <div class="modal-footer" >
+                  <button class="btn btn-success" (click)="operation =='add'?  addFiche() : updateFiche()" (click)="modal.close('Save click')">
+                    {{operation =='add'? 'Ajouter' :
+                     operation =='edit' ? 'modifier':''}}</button>
+                   </div>
+
+                                   </form>
+                                   </div>
+                                     </div>
+                                       </div>
+
+                                     </ng-template>

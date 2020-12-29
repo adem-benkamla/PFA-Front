@@ -1,0 +1,22 @@
+
+<div class='a'>
+<div class="row" >
+  <div class="col-lg-2" *ngIf="showHideSideBar">
+    <app-sidebar></app-sidebar>
+</div>
+<div class="col-lg-10">
+<app-navbar   [showSideBar]="showHideSideBar"
+  (showSideBarChange)="onShowSideBarChange($event)"
+  ></app-navbar>
+  <app-content></app-content>
+
+</div>
+</div>
+<div style="height: 400px"></div>
+  <!-- 200px is FooterHeight  this will push
+  the footer so it will not overlap if you have very long content  -->
+
+
+<app-footer></app-footer>
+
+</div>

@@ -1,0 +1,65 @@
+
+
+<h3>les utilisateurs</h3>
+  <div class ="container">
+    <div class="row">
+<div class="col-lg-9">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><i class="fa fa-key" aria-hidden="true"></i>username</th><th>enable</th><th><button class="btn btn-success" (click)="operation ='add';" >ADD</button></th>
+      </tr>
+      </thead>
+      <tbody>
+              <tr *ngFor="let user of user">
+              <td>{{user.username}}</td>>
+                <td>  <button class="btn btn-success" (click)="operation ='edit'; selectedUser=user;">edit</button>  </td>
+          
+
+              </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+
+        <div class="card-header bg-info text-white">
+          {{operation =='add'? 'Ajouter une secretaire':
+        operation =='edit'? 'Modifier une secretaire':
+        operation =='delete'? 'supprimer une secretaire':''}}
+    </div>
+    <div class="card-body">
+<div *ngIf="operation=='add'|| operation=='edit'">
+ <form [formGroup]="userForm">
+
+          <div class="form-group">
+            <label ><i class="fa fa-key" aria-hidden="true"></i>username</label>
+          <input type="text" class="form-control" formControlName="username" [(ngModel)]="selectedUser.username"/>
+
+            </div>
+            <div class="alert alert-danger" *ngIf="userForm.controls['username'].invalid && (userForm.controls['username'].touched ||userForm.controls['username'].dirty)">
+            username est obligatoire
+              </div>
+
+
+                  <button class="btn btn-success" (click)="operation =='add'? add() : update() ">
+                   {{operation =='add'? 'Ajouter' :
+                   operation =='edit' ? 'modifier':''}}</button>
+
+                  </form>
+
+</div>
+<div *ngIf="operation=='annuler'">
+  <p class="card-title">
+  username:{{selectedUser.username}}
+</p>
+<p>
+  voulez vous supprimer la secretaire?
+  <button class="btn btn-success" [disabled]="!selectedUser.username"(click)="delete()">confirmer</button>
+  </p>
+  </div>
+</div>
+</div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,39 @@
+<div>
+
+  <div class="row">
+    <div class="col-lg-5">
+      <app-my-chart
+      [type]="'bar'"
+      [title]="'patients par catégorie'"
+      [data]="patientdata">
+      </app-my-chart>
+    </div>
+    <div class="col-lg-7">
+      <app-my-chart
+      [type]="'line'"
+      [title]="'Réprésentation linéaire des patients'"
+      [data]="patientdata">
+      </app-my-chart>
+    </div>
+</div>
+</div>
+
+<div>
+
+  <div class="row">
+    <div class="col-lg-5">
+      <app-my-chart
+      [type]="'bar'"
+      [title]="'factures par jours'"
+      [data]="facturedata">
+      </app-my-chart>
+    </div>
+    <div class="col-lg-7">
+      <app-my-chart
+      [type]="'line'"
+      [title]="'Réprésentation linéaire des factures'"
+      [data]="facturedata">
+      </app-my-chart>
+    </div>
+</div>
+</div>

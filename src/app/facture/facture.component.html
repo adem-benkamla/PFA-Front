@@ -1,0 +1,65 @@
+<h3>Facture</h3>
+  <div class ="container">
+    <div class="row">
+<div class="col-lg-11">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><i class="fa fa-calendar" aria-hidden="true"></i>Date</th><th><i class="fa fa-male" aria-hidden="true"></i>Nom et Prenom</th><th><i class="fa fa-money" aria-hidden="true"></i>Montant</th><th><button class="btn btn-success" (click)="open(mymodal)" (click)="operation ='add';" >ADD</button></th>
+      </tr>
+      </thead>
+      <tbody>
+              <tr *ngFor="let facture of facture">
+              <td>{{facture.date}}</td><td>{{facture.nometprenom}}</td><td>{{facture.montant}}</td>
+                <td>  <button class="btn btn-success" (click)="open(mymodal)" (click)="operation ='edit'; selectedFacture=facture;">edit</button>  </td>
+              <td>  <button class="btn btn-danger"(click)="operation ='annuler';">annuler</button> </td>
+
+              </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          {{operation =='add'? 'Ajouter rendez_vous':
+        operation =='edit'? 'Modifier rendez_vous':
+        operation =='annuler'? 'Annuler rendez_vous':''}}
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+<div *ngIf="operation=='add'|| operation=='edit'">
+ <form [formGroup]="factureForm">
+
+          <div class="form-group">
+            <label><i class="fa fa-calendar" aria-hidden="true"></i>date</label>
+          <input type="text" class="form-control" formControlName="date" [(ngModel)]="selectedFacture.date"/>
+           
+            </div>
+            <div class="form-group">
+              <label ><i class="fa fa-male" aria-hidden="true"></i>nom_et_prenom</label>
+            <input type="text" class="form-control" formControlName="nometprenom" [(ngModel)]="selectedFacture.nometprenom"/>
+            </div>
+            <div class="form-group">
+              <label><i class="fa fa-money" aria-hidden="true"></i>Montant</label>
+            <input type="number" class="form-control" formControlName="montant"[(ngModel)]="selectedFacture.montant"/>
+
+              </div>
+
+
+                    <div class="modal-footer">
+                  <button class="btn btn-success" (click)="operation =='add'? addFacture() : updateFacture() " (click)="modal.close('Save click')">
+                   {{operation =='add'? 'Ajouter' :
+                   operation =='edit' ? 'modifier':''}}</button>
+  </div>
+                  </form>
+                  </div>
+                    </div>
+                      </div>
+
+                    </ng-template>

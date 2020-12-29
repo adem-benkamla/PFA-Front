@@ -1,0 +1,38 @@
+<nav class="hidden-xs-down bg-faded sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="nav-link"
+      [routerLink]="[{outlets: {contentOutlet:'dashboard'}}]"
+
+
+        *ngIf="hasRoleUser()"
+          routerLinkActive="active"><i class="fa fa-gears"></i>Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[{outlets: {contentOutlet:'fiche'}}]"
+      *ngIf="hasRoleUser()"
+        routerLinkActive="active"><i class="fa fa-address-book-o" aria-hidden="true"></i>Fiches</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[{outlets: {contentOutlet:'rendez_vous'}}]"
+      *ngIf="hasRoleUser()"
+        routerLinkActive="active"><i class="fa fa-clock-o" aria-hidden="true"></i>Rendez_Vous</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[{outlets: {contentOutlet:'facture'}}]"
+      *ngIf="hasRoleUser()"
+        routerLinkActive="active"><i class="fa fa-file-o"></i> Facture</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[{outlets: {contentOutlet:'user'}}]"
+        *ngIf="hasRoleAdmin()"
+        routerLinkActive="active"><i class="fa fa-users"></i> Les secretaires</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+  [routerLink]="[{outlets: {contentOutlet:'dossier'}}]"
+      *ngIf="hasRoleAdmin()"
+        routerLinkActive="active">diagnostic</a>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,22 @@
+
+<label class="btn btn-default">
+  <input type="file" name="documentFile" (change)="selectFile($event)" />
+</label>
+
+<button class="btn btn-success" [disabled]="!selectedFiles" (click)="saveFile()">
+  Upload
+</button>
+
+
+
+<div class="card">
+<div class="card-header">List of Files</div>
+  <div
+    class="list-group list-group-flush"
+    *ngFor="let file of files | async">
+    <div class="list-group-item">
+      <tr>{{file.docName}}</tr>
+
+<button mat-raised-button color="primary" (click)="download(file.id)">DOWNLOAD</button>
+</div>
+</div>

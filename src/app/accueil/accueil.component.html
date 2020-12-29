@@ -1,0 +1,73 @@
+
+<div class="bghome" >
+<app-navbar></app-navbar>
+<br>
+
+<h1 style="text-align: center ; margin-left: 400px">Gestion du Cabinet</h1>
+
+  <div class="row float-right mt-5" style="margin-right: 9%">
+
+    <div class="col-sm "   *ngIf="hasRoleUser()">
+      <div class="pr-0 pl-0 " style="border-radius: 8px;border:
+      2px solid black;min-width:max-content">
+      <a class=""  (click)="fiche()"><img  src="assets/image/Capture.jpg" alt="" class="imgg"></a>
+      <div class="m-2" style="text-align: center"><div>Les fiches</div></div>
+      </div>
+    </div>
+    <div class="col-sm" *ngIf="hasRoleUser()">
+    <div  style="border-radius: 8px;border:
+         2px solid black;min-width:max-content" >
+      <a (click)="login()" ><img src="assets/image/rv.png "  alt="" class="imgg"></a>
+      <div class="m-2" style="text-align: center"><div>Les rendez_vous</div></div>
+
+    </div>
+    </div>
+    <div class="col-sm" *ngIf="hasRoleAdmin()">
+    <div style="border-radius: 8px;border:
+      2px solid black">
+      <a href="" ><img src="assets/image/dossier2.jpg" alt="" class="imgg"></a>
+      <div class="m-2" style="text-align: center"><div>Les dossiers médicaux</div></div>
+
+    </div>
+    </div>
+
+
+  </div>
+
+  <div class="container" style="margin-top: 22%;margin-left: 25% ">
+    <div class="row justify-content-center" >
+      <div class="justify-content-center" *ngIf="hasRoleUser()" >
+        <div style="border-radius: 8px;border:
+      2px solid black;margin-right: 15px">
+          <a  (click)="facture()"><img src="assets/image/bill.jpg" alt="" class="imgg"></a>
+          <div class="m-2" style="text-align: center"><div>Factures</div></div>
+
+        </div>
+      </div>
+      <div class="justify-content-center" *ngIf="hasRoleUser()">
+        <div style="border-radius: 8px;border:
+      2px solid black;margin-right: 15px">
+          <a  (click)="dashboard()"><img src="assets/image/stats.jpg" alt="" class="imgg"></a>
+          <hr class="m-0 p-0 text-dark border-2">
+          <div class="m-2" style="text-align: center">
+            <div>
+          Dashboard</div></div>
+
+        </div>
+      </div>
+      <div class="justify-content-center" *ngIf="hasRoleAdmin()">
+        <div style="border-radius: 8px;border:
+      2px solid black;margin-right: 15px">
+          <a  (click)="diagnostic()"><img src="assets/image/radio.jpg" alt="" class="imgg"></a>
+          <div class="m-2" style="text-align: center"><div>Diagnostique</div></div>
+
+        </div>
+      </div>
+      <div style="border-radius: 8px;border:
+      2px solid black;margin-left: 15px" *ngIf="hasRoleAdmin()">
+        <a  (click)="Utilisateur()"><img src="assets/image/user.png" alt="" class="imgg"></a>
+        <div class="m-2" style="text-align: center"><div>Utilisateur medicale
+        </div></div>
+      </div>
+    </div>
+  </div>
